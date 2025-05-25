@@ -8,11 +8,154 @@ height: 90vh;
 }
 
 .card{
-    height: 40vh;
-    top:30%;
+    height: 50vh;
+    top:20%;
     left: 40%;
     width: 20rem;   
 }
 
+/* ...existing code... */
+
+/* Vibrant gradient background for the body */
+body {
+    background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+
+/* Center the card vertically and horizontally */
+.container {
+   
+    height: 90vh;
+}
+
+/* Card styling with glassmorphism effect */
+.card {
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    height: 55vh;
+    width: 22rem;
+    margin-top: 2rem;
+    color: #222;
+    transition: box-shadow 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+/* Card icon styling */
+.card-icon {
+    width: 90px;
+    height: 60px;
+    filter: drop-shadow(0 2px 8px #43cea2);
+}
+
+/* Card title and temperature */
+.card-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #185a9d;
+   
+}
+
+.tempContainer {
+    color: #82ff0c;
+    text-shadow: 0 2px 8px rgba(67, 206, 162, 0.2);
+}
+
+
+.descriptionContainer {
+    color: #82ff0c;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.feelslikeContainer{
+    color: #185a9d;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Wind and humidity sections */
+.d-flex.justify-content-between.align-items-center {
+    background: rgba(255,255,255,0.12);
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+    color: #185a9d;
+}
+
+.windSpeedContainer,
+.humidityContainer {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #82ff0c;
+}
+
+/* Navbar styling */
+.navbar {
+    background: rgba(255,255,255,0.25) !important;
+    box-shadow: 0 2px 8px rgba(67, 206, 162, 0.08);
+    border-bottom: 1px solid rgba(24, 90, 157, 0.08);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #185a9d !important;
+    letter-spacing: 2px;
+}
+
+.nav-link {
+    color: #185a9d !important;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-link.active{
+    color: #185a9d !important;
+}
+
+.nav-link:hover {
+    color: #43cea2 !important;
+}
+
+/* Search bar and button */
+#city.form-control {
+    border-radius: 1rem 0 0 1rem;
+    border: none;
+    box-shadow: 0 2px 8px rgba(67, 206, 162, 0.08);
+}
+
+.btn-outline-success.submit {
+    border-radius: 0 1rem 1rem 0;
+    border: none;
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    color: #fff;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-outline-success.submit:hover {
+    background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .card {
+        width: 95vw;
+        height: auto;
+        margin-top: 1rem;
+        padding: 0.5rem;
+    }
+    .container {
+        height: auto;
+        padding: 1rem 0;
+    }
+}
 
 

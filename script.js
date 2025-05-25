@@ -1,6 +1,15 @@
 import { API_KEY } from "./config.js";
 
-
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("form[role='search']");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const city = document.getElementById("city").value.trim();
+    if (city) {
+      getWeatherData(city, "metric", API_KEY);
+    }
+  });
+});
 
 async function getWeatherData(city, unitgroup = "metric", API_KEY) {
   const response = await fetch(
@@ -22,24 +31,28 @@ function displayWeatherData(data) {
   const FeelLike = data.currentConditions.feelslike;
   const humidity = data.currentConditions.humidity;
   const windSpeed = data.currentConditions.windspeed;
-  const description = data.currentConditions.conditions;  
-  console.log(description)
-  
+  const description = data.currentConditions.conditions;
+
   const Cardtitle = document.body.getElementsByClassName("card-title")[0];
   Cardtitle.innerHTML = Location;
   const Cardicon = document.body.getElementsByClassName("card-icon")[0];
   Cardicon.src = iconUrl;
-  const tempContainer = document.body.getElementsByClassName("tempContainer")[0];
+  const tempContainer =
+    document.body.getElementsByClassName("tempContainer")[0];
   tempContainer.innerHTML = `${temperature}°C`;
-  const feelslikeContainer =document.body.getElementsByClassName("feelslikeContainer")[0];
+  const feelslikeContainer =
+    document.body.getElementsByClassName("feelslikeContainer")[0];
   feelslikeContainer.innerHTML = `Feels Like ${FeelLike} °C`;
-  const humidityContainer = document.body.getElementsByClassName("humidityContainer")[0];
+  const humidityContainer =
+    document.body.getElementsByClassName("humidityContainer")[0];
   humidityContainer.innerHTML = `${humidity}%`;
-  const windSpeedContainer = document.body.getElementsByClassName("windSpeedContainer")[0];
+  const windSpeedContainer =
+    document.body.getElementsByClassName("windSpeedContainer")[0];
   windSpeedContainer.innerHTML = `${windSpeed}km/h`;
-  const descriptionContainer = document.body.getElementsByClassName("descriptionContainer")[0];
+  const descriptionContainer = document.body.getElementsByClassName(
+    "descriptionContainer"
+  )[0];
   descriptionContainer.innerHTML = `${description}`;
-  console.log(descriptionContainer);
 }
 
-getWeatherData("kolkata", "uk", API_KEY);
+getWeatherData("New Delhi", "metric", API_KEY);
