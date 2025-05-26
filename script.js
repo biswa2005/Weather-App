@@ -46,7 +46,6 @@ function updateUnitGroupAndRefresh() {
   getWeatherData(city, unitgroup, WEATHER_API_KEY);
 }
 
-
 async function getWeatherData(city, unitgroup, API_KEY) {
   const response = await fetch(
     `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unitgroup}&key=${API_KEY}`,
