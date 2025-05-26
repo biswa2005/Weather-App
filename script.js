@@ -12,7 +12,42 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-async function getWeatherData(city, unitgroup = "metric", API_KEY) {
+let selectedWindSpeed = "km/h";
+let selectedTemperature = "C"; 
+let unitgroup = "metric"; // Default unit group
+
+document
+  .querySelectorAll("#windspeed-dropdown .dropdown-item")
+  .forEach((item) => {
+    item.addEventListener("click", function () {
+      selectedWindSpeed = this.getAttribute("data-value");
+      updateUnitGroupAndRefresh();
+    });
+  });
+
+document
+  .querySelectorAll("#temperature-dropdown .dropdown-item")
+  .forEach((item) => {
+    item.addEventListener("click", function () {
+      selectedTemperature = this.getAttribute("data-value");
+      updateUnitGroupAndRefresh();
+    });
+  });
+
+function updateUnitGroupAndRefresh() {
+  if (selectedWindSpeed === "miles/h" && selectedTemperature === "C") {
+    unitgroup = "uk";
+  } else if (selectedWindSpeed === "miles/h" && selectedTemperature === "F") {
+    unitgroup = "us";
+  } else {
+    unitgroup = "metric";
+  }
+  const city = document.getElementById("city").value.trim() || "New Delhi";
+  getWeatherData(city, unitgroup, WEATHER_API_KEY);
+}
+
+
+async function getWeatherData(city, unitgroup, API_KEY) {
   const response = await fetch(
     `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unitgroup}&key=${API_KEY}`,
     {
@@ -40,23 +75,23 @@ function displayWeatherData(data) {
   Cardicon.src = iconUrl;
   const tempContainer =
     document.body.getElementsByClassName("tempContainer")[0];
-  tempContainer.innerHTML = `${temperature}°C`;
+  tempContainer.innerHTML = `${temperature}°${selectedTemperature}`;
   const feelslikeContainer =
     document.body.getElementsByClassName("feelslikeContainer")[0];
-  feelslikeContainer.innerHTML = `Feels Like ${FeelLike} °C`;
+  feelslikeContainer.innerHTML = `Feels Like ${FeelLike}°${selectedTemperature}`;
   const humidityContainer =
     document.body.getElementsByClassName("humidityContainer")[0];
   humidityContainer.innerHTML = `${humidity} %`;
   const windSpeedContainer =
     document.body.getElementsByClassName("windSpeedContainer")[0];
-  windSpeedContainer.innerHTML = `${windSpeed} km/h`;
+  windSpeedContainer.innerHTML = `${windSpeed} ${selectedWindSpeed}`;
   const descriptionContainer = document.body.getElementsByClassName(
     "descriptionContainer"
   )[0];
   descriptionContainer.innerHTML = `${description}`;
 }
 
-getWeatherData("New Delhi", "metric", WEATHER_API_KEY);
+getWeatherData("New Delhi", unitgroup, WEATHER_API_KEY);
 
 //Chatbot Logic
 
@@ -81,7 +116,7 @@ async function sendMessage() {
 
   appendMessage(userMessage, "user");
   userInput.value = "";
-  
+
   const SYSTEM_PROMPT = `
   You are a weather assistant designed to provide accurate, concise, and up-to-date weather information.
   
@@ -98,7 +133,7 @@ async function sendMessage() {
   
   Your goal is to assist users by delivering reliable and relevant weather information only.
   `;
-  
+
   const payload = {
     system_instruction: {
       parts: [{ text: SYSTEM_PROMPT }],
@@ -143,3 +178,7 @@ userInput.addEventListener("keydown", function (e) {
 });
 
 chatSend.addEventListener("click", sendMessage);
+
+
+
+// Now you can use selectedWindSpeed and selectedTemperature anywhere in your script

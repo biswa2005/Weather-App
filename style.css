@@ -144,6 +144,22 @@ body {
     color: #fff;
 }
 
+.Temperature,
+.windspeed{
+  border-radius: 1rem;
+    border: none;
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    color: #fff;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+} 
+
+.blur{
+  background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .card {
@@ -312,4 +328,8 @@ body {
     .chat-container {
       max-width: 24rem;
     }
+  }
+
+  .pointer{
+    cursor: pointer;
   }

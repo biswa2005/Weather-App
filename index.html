@@ -37,6 +37,26 @@
               <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
+          <div class="d-flex">
+            <div class="dropdown d-flex gap-2">
+              <button class="btn btn-primary dropdown-toggle windspeed" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Wind Speed
+              </button>
+              <ul class="dropdown-menu blur fs-5 fw-bold pointer" id="windspeed-dropdown">
+                <li class="dropdown-item" data-value="km/h">km/hr</li>
+                <li class="dropdown-item" data-value="miles/h">miles/hr</li>
+              </ul>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle Temperature" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+               Temperature
+              </button>
+              <ul class="dropdown-menu blur fs-5 fw-bold pointer" id="temperature-dropdown">
+                <li class="dropdown-item" data-value="C">°C</li>
+                <li class="dropdown-item" data-value="F">°F</li>
+              </ul>
+            </div>
+            <div>
+          </div>
           <form class="d-flex" role="search">
             <input
               id="city"
@@ -51,8 +71,7 @@
             >
               Search
             </button>
-          </form>
-        </div>
+          </form> 
       </div>
     </nav>
     <div class="container">
