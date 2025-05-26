@@ -180,4 +180,3 @@ chatSend.addEventListener("click", sendMessage);
 
 
 
-// Now you can use selectedWindSpeed and selectedTemperature anywhere in your script
