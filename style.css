@@ -1,0 +1,335 @@
+.card-icon{
+    width: 90px;
+    height: 60px;
+}
+
+.container{
+height: 90vh;
+}
+
+.card{
+    height: 50vh;
+    top:20%;
+    left: 40%;
+    width: 20rem;   
+}
+
+/* ...existing code... */
+
+/* Vibrant gradient background for the body */
+body {
+    background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+
+/* Center the card vertically and horizontally */
+.container {
+   
+    height: 90vh;
+}
+
+/* Card styling with glassmorphism effect */
+.card {
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    height: 55vh;
+    width: 22rem;
+    margin-top: 2rem;
+    color: #222;
+    transition: box-shadow 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+}
+
+/* Card icon styling */
+.card-icon {
+    width: 90px;
+    height: 60px;
+    filter: drop-shadow(0 2px 8px #43cea2);
+}
+
+/* Card title and temperature */
+.card-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #185a9d;
+   
+}
+
+.tempContainer {
+    color: #82ff0c;
+    text-shadow: 0 2px 8px rgba(67, 206, 162, 0.2);
+}
+
+
+.descriptionContainer {
+    color: #82ff0c;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.feelslikeContainer{
+    color: #185a9d;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Wind and humidity sections */
+.d-flex.justify-content-between.align-items-center {
+    background: rgba(255,255,255,0.12);
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+    color: #185a9d;
+}
+
+.windSpeedContainer,
+.humidityContainer {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #82ff0c;
+}
+
+/* Navbar styling */
+.navbar {
+    background: rgba(255,255,255,0.25) !important;
+    box-shadow: 0 2px 8px rgba(67, 206, 162, 0.08);
+    border-bottom: 1px solid rgba(24, 90, 157, 0.08);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #185a9d !important;
+    letter-spacing: 1.2px;
+}
+
+.nav-link {
+    color: #185a9d !important;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-link.active{
+    color: #185a9d !important;
+}
+
+.nav-link:hover {
+    color: #43cea2 !important;
+}
+
+/* Search bar and button */
+#city.form-control {
+    border-radius: 1rem 0 0 1rem;
+    border: none;
+    box-shadow: 0 2px 8px rgba(67, 206, 162, 0.08);
+}
+
+.btn-outline-success.submit {
+    border-radius: 0 1rem 1rem 0;
+    border: none;
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    color: #fff;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-outline-success.submit:hover {
+    background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+    color: #fff;
+}
+
+.Temperature,
+.windspeed{
+  border-radius: 1rem;
+    border: none;
+    background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+    color: #fff;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+} 
+
+.blur{
+  background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .card {
+        width: 95vw;
+        height: auto;
+        margin-top: 1rem;
+        padding: 0.5rem;
+    }
+    .container {
+        height: auto;
+        padding: 1rem 0;
+    }
+}
+
+
+/* Chatbot */
+
+.chat-toggle {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #4f46e5;
+    color: white;
+    padding: 1rem;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .chat-toggle:hover {
+    background-color: #4338ca;
+  }
+  .chat-toggle .sr-only{
+    width: 2rem;
+    height: 1.5rem;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .chat-container {
+    display: none;
+    position: fixed;
+    bottom: 7.5rem;
+    right: 2rem;
+    width: 100%;
+    max-width: 20rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    display: none;
+    z-index: 1000;
+  }
+  
+  .chat-container.open {
+    display: block;
+  }
+  .chat-header {
+    background-color: #4f46e5;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .chat-header h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  .chat-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  .chat-close:hover {
+    color: #e5e7eb;
+  }
+  .chat-close svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .chat-body {
+    height: 24rem;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #f9fafb;
+  }
+  .chat-message {
+    margin-bottom: 1rem;
+    animation: slideIn 0.2s ease-out;
+  }
+  .chat-message p {
+    display: inline-block;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    max-width: 80%;
+  }
+  .chat-message.bot p {
+    background-color: #e0e7ff;
+    color: #1e3a8a;
+  }
+  .chat-message.user {
+    text-align: right;
+  }
+  .chat-message.user p {
+    background-color: #4f46e5;
+    color: white;
+  }
+  .chat-input-container {
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+  }
+  .chat-input-container form {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .chat-input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    outline: none;
+  }
+  .chat-input:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  }
+  .chat-send {
+    background-color: #4f46e5;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+  }
+  .chat-send:hover {
+    background-color: #4338ca;
+  }
+  @keyframes slideIn {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @media (min-width: 768px) {
+    .chat-container {
+      max-width: 24rem;
+    }
+  }
+
+  .pointer{
+    cursor: pointer;
+  }
