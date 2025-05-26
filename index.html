@@ -48,7 +48,6 @@
             <button
               class="btn btn-outline-success submit"
               type="submit"
-              onclick="getWeatherData()"
             >
               Search
             </button>
@@ -71,6 +70,31 @@
        <div class="d-flex justify-content-between align-items-center p-4"><h4>Humidty</h4><p class="humidityContainer"></p></div>
       </div>
     </div>
+    <button class="chat-toggle" id="chat-toggle">
+      <span class="sr-only"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#B197FC" d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"/></svg></span>
+    </button>
+    <div id="chat-container" class="chat-container">
+      <div class="chat-header">
+        <h2>Weather Assistant</h2>
+        <button id="chat-close" class="chat-close">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div id="chat-body" class="chat-body">
+        <div class="chat-message bot">
+          <p>Hi! How can I assist you today?</p>
+        </div>
+      </div>
+      <div class="chat-input-container">
+        <form onsubmit="return false;">
+          <input id="chat-input" type="text" placeholder="Type your message..." class="chat-input">
+          <button id="chat-send" class="chat-send">Send</button>
+        </form>
+      </div>
+    </div>
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="script.js"></script>
   </body>

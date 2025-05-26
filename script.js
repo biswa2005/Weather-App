@@ -1,4 +1,5 @@
-import { API_KEY } from "./config.js";
+import { WEATHER_API_KEY } from "./config.js";
+import { GEMINI_API_KEY } from "./config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form[role='search']");
@@ -6,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const city = document.getElementById("city").value.trim();
     if (city) {
-      getWeatherData(city, "metric", API_KEY);
+      getWeatherData(city, "metric", WEATHER_API_KEY);
     }
   });
 });
@@ -45,14 +46,93 @@ function displayWeatherData(data) {
   feelslikeContainer.innerHTML = `Feels Like ${FeelLike} °C`;
   const humidityContainer =
     document.body.getElementsByClassName("humidityContainer")[0];
-  humidityContainer.innerHTML = `${humidity}%`;
+  humidityContainer.innerHTML = `${humidity} %`;
   const windSpeedContainer =
     document.body.getElementsByClassName("windSpeedContainer")[0];
-  windSpeedContainer.innerHTML = `${windSpeed}km/h`;
+  windSpeedContainer.innerHTML = `${windSpeed} km/h`;
   const descriptionContainer = document.body.getElementsByClassName(
     "descriptionContainer"
   )[0];
   descriptionContainer.innerHTML = `${description}`;
 }
 
-getWeatherData("New Delhi", "metric", API_KEY);
+getWeatherData("New Delhi", "metric", WEATHER_API_KEY);
+
+//Chatbot Logic
+
+const chatContainer = document.getElementById("chat-container");
+const chatToggle = document.getElementById("chat-toggle");
+const chatClose = document.getElementById("chat-close");
+const chatSend = document.getElementById("chat-send");
+const userInput = document.getElementById("chat-input");
+const chatBody = document.getElementById("chat-body");
+
+chatToggle.addEventListener("click", () => {
+  chatContainer.classList.toggle("open");
+});
+
+chatClose.addEventListener("click", () => {
+  chatContainer.classList.remove("open");
+});
+
+async function sendMessage() {
+  const userMessage = userInput.value.trim();
+  if (!userMessage) return;
+
+  appendMessage(userMessage, "user");
+  userInput.value = "";
+
+  const SYSTEM_PROMPT = `
+You are a helpful assistant that provides information about the weather and don't engage in casual conversation.
+You should respond with accurate and concise weather information based on the user's queries.
+If the user asks about the temperature, humidity, wind speed, and a brief description of the weather provide them with that specific information.
+If the user asks for a specific location, provide the weather for that location.
+If the user asks for a general weather update, provide a summary of the current weather conditions.
+If the user asks about the weather in a specific city, provide the weather for that city.
+if the user asks about anything other than weather related queries, politely inform them that you can only provide weather information and suggest they ask about the weather instead.
+  `;
+
+  const payload = {
+    system_instruction: {
+      parts: [{ text: SYSTEM_PROMPT }],
+    },
+    contents: {
+      parts: [{ text: userMessage }],
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    const data = await response.json();
+    const botReply =
+      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+      "Hmm, I couldn't come up with a response.";
+    console.log(botReply);
+    appendMessage(botReply, "bot");
+  } catch (error) {
+    console.error(error);
+    appendMessage("An error occurred while getting a response.", "bot");
+  }
+}
+
+function appendMessage(text, sender) {
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add("chat-message", sender);
+  messageDiv.innerHTML = `<p>${text}</p>`;
+  chatBody.appendChild(messageDiv);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+userInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") sendMessage();
+});
+
+chatSend.addEventListener("click", sendMessage);
